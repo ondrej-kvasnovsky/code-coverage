@@ -4,17 +4,16 @@ version '1.0-SNAPSHOT'
 buildscript {
     repositories {
         // uncomment to get clover working
-        // jcenter()
-
-        maven { url "https://plugins.gradle.org/m2/" }
+        jcenter()
+        //maven { url "https://plugins.gradle.org/m2/" }
     }
 
     dependencies {
         // uncomment to get clover working
-        // classpath 'com.bmuschko:gradle-clover-plugin:2.1.0'
+        classpath 'com.bmuschko:gradle-clover-plugin:2.1.0'
 
         // uncomment to get cobertura working
-        classpath "net.saliman:gradle-cobertura-plugin:2.4.0"
+        // classpath "net.saliman:gradle-cobertura-plugin:2.4.0"
     }
 }
 
@@ -22,13 +21,13 @@ apply plugin: 'groovy'
 apply plugin: 'java'
 
 // uncomment to get clover working
-// apply plugin: 'com.bmuschko.clover'
+apply plugin: 'com.bmuschko.clover'
 
 // uncomment to get jacoco working
 //apply plugin: 'jacoco'
 
 // uncomment to get cobertura working
-apply plugin: "net.saliman.cobertura"
+// apply plugin: "net.saliman.cobertura"
 
 sourceCompatibility = 1.8
 
@@ -38,28 +37,28 @@ repositories {
 
 dependencies {
     // uncomment to get clover working
-    // clover 'org.openclover:clover:4.2.0'
+    clover 'org.openclover:clover:4.2.0'
 
     compile("org.codehaus.groovy:groovy-all:$groovyVersion")
 
     testCompile("org.spockframework:spock-core:$spockVersion")
-    testCompile("com.github.tomakehurst:wiremock:$wireMockVersion")
     testCompile("com.blogspot.toomuchcoding:spock-subjects-collaborators-extension:$spockExtensionVersion")
     testCompile("cglib:cglib-nodep:$cglibNodepVersion")
     testCompile("org.objenesis:objenesis:$objenesisVersion")
 }
 
 // uncomment to get clover working
-//clover {
-//    excludes = []
-//    targetPercentage = '100%'
-//
-//    report {
-//        html = true
-//        testResultsDir = project.tasks.getByName('test').reports.junitXml.destination
-//        testResultsInclude = 'TEST-*.xml'
-//    }
-//}
+clover {
+    excludes = []
+    targetPercentage = '100%'
+
+    report {
+        html = true
+        testResultsDir = project.tasks.getByName('test').reports.junitXml.destination
+        testResultsInclude = 'TEST-*.xml'
+    }
+}
+build.finalizedBy cloverGenerateReport
 
 // uncomment to get jacoco working
 //jacocoTestCoverageVerification {
@@ -88,13 +87,13 @@ dependencies {
 // https://github.com/bmuschko/gradle-clover-plugin
 
 // uncomment to get cobertura working
-cobertura {
-    coverageExcludes = []
-    coverageIgnoreTrivial = true
-    coverageCheckBranchRate = 100
-    coverageCheckLineRate = 100
-    coverageCheckPackageBranchRate = 100
-    coverageCheckPackageLineRate = 100
-    coverageCheckTotalBranchRate = 100
-    coverageCheckTotalLineRate = 100
-}
+//cobertura {
+//    coverageExcludes = []
+//    coverageIgnoreTrivial = true
+//    coverageCheckBranchRate = 100
+//    coverageCheckLineRate = 100
+//    coverageCheckPackageBranchRate = 100
+//    coverageCheckPackageLineRate = 100
+//    coverageCheckTotalBranchRate = 100
+//    coverageCheckTotalLineRate = 100
+//}
