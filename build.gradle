@@ -54,8 +54,6 @@ clover {
 
     report {
         html = true
-        testResultsDir = project.tasks.getByName('test').reports.junitXml.destination
-        testResultsInclude = 'TEST-*.xml'
     }
 }
 build.finalizedBy cloverGenerateReport
